@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include <Project_2/lidars.h>
+#include "Project_2/lidars.h"
 #include <sensor_msgs/LaserScan.h>
 
 
@@ -10,7 +10,7 @@ public:
   	Lidars() {
 	  sub_front = n.subscribe("/front/scan", 1000, &Lidars::frontCallback, this);
 	  sub_rear = n.subscribe("/rear/scan", 1000, &Lidars::rearCallback, this);
-	  pub = n.advertise<Project_2::lidars>("lidars_merged", 1000);
+	  pub = n.advertise<Project_2::lidars>("/lidars_merged", 1000);
   	}
 
   	void frontCallback(const sensor_msgs::LaserScanConstPtr& msg) {
