@@ -44,7 +44,7 @@ private:
   ros::Subscriber sub_front;
   ros::Subscriber sub_rear;
   ros::Publisher pub;
-  lidars lidars_msg;
+  Project_2::lidars lidars_msg;
 };
 
 
