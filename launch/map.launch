@@ -1,0 +1,18 @@
+<launch>
+
+	<param name="use_sim_time" value="true" />
+
+	<node pkg="gmapping" type="slam_gmapping" name="map" output="screen">
+
+		<remap from="scan" to="scan_multi"/>
+		<remap from="odom_frame" to="odom"/>
+
+	</node>
+
+	<node pkg="Project_2" type="pub_odom" name="odometry_transform" />
+	<node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster1" args="-0.35 0.0 0.0 0.0 0.0 0.866 0.5 base_link laser_rear 100" />
+	<node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster2" args="0.35 0.0 0.0 0.0 0.0 0.5150381 0.8571673 base_link laser_front 100" />
+	<node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster3" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 base_link base_footprint 100" />
+	<node pkg="tf" type="static_transform_publisher" name="base_link_to_scan" args="0.0 0.0 0.0 0.0 0.0 0.0 0.0 base_link scan_multi 100" />
+
+</launch>

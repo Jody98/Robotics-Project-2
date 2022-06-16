@@ -210,7 +210,4 @@ include_directories(
 
 add_executable(pub_odom src/Odometry_TF.cpp)
 target_link_libraries(pub_odom ${catkin_LIBRARIES})
-add_executable(lidars src/Lidar_merge.cpp)
-target_link_libraries(lidars ${catkin_LIBRARIES})
 add_dependencies(pub_odom ${catkin_EXPORTED_TARGETS} Project_2_generate_messages)
-add_dependencies(lidars ${catkin_EXPORTED_TARGETS} Project_2_generate_messages)
