@@ -45,36 +45,6 @@ public:
     transformStamped2.transform.rotation.w = msg->pose.pose.orientation.w;
     // send transform
     br.sendTransform(transformStamped2);
-
-    // set header
-    transformStamped3.header.stamp = ros::Time::now();
-    transformStamped3.header.frame_id = "base_link";
-    transformStamped3.child_frame_id = "laser_front";
-    // set x,y
-    transformStamped3.transform.translation.x = msg->pose.pose.position.x;
-    transformStamped3.transform.translation.y = msg->pose.pose.position.y;
-    transformStamped3.transform.translation.z = 0.0;
-    transformStamped3.transform.rotation.x = msg->pose.pose.orientation.x;
-    transformStamped3.transform.rotation.y = msg->pose.pose.orientation.y;
-    transformStamped3.transform.rotation.z = msg->pose.pose.orientation.z;
-    transformStamped3.transform.rotation.w = msg->pose.pose.orientation.w;
-    // send transform
-    br.sendTransform(transformStamped3);
-
-    // set header
-    transformStamped4.header.stamp = ros::Time::now();
-    transformStamped4.header.frame_id = "base_link";
-    transformStamped4.child_frame_id = "laser_rear";
-    // set x,y
-    transformStamped4.transform.translation.x = msg->pose.pose.position.x;
-    transformStamped4.transform.translation.y = msg->pose.pose.position.y;
-    transformStamped4.transform.translation.z = 0.0;
-    transformStamped4.transform.rotation.x = msg->pose.pose.orientation.x;
-    transformStamped4.transform.rotation.y = msg->pose.pose.orientation.y;
-    transformStamped4.transform.rotation.z = msg->pose.pose.orientation.z;
-    transformStamped4.transform.rotation.w = msg->pose.pose.orientation.w;
-    // send transform
-    br.sendTransform(transformStamped4);
   }
 
 private:
@@ -82,8 +52,6 @@ private:
   tf2_ros::TransformBroadcaster br;
   geometry_msgs::TransformStamped transformStamped;
   geometry_msgs::TransformStamped transformStamped2;
-  geometry_msgs::TransformStamped transformStamped3;
-  geometry_msgs::TransformStamped transformStamped4;
   ros::Subscriber sub;
 };
 

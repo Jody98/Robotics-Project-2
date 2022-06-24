@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(Project_2)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+ add_compile_options(-std=c++14)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -11,17 +11,17 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   geometry_msgs
-  sensor_msgs
   message_generation
+  sensor_msgs
   std_msgs
   nav_msgs
   tf2_ros
   tf2
-)
+  )
 
+  
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -53,10 +53,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- add_message_files(
-   FILES
-   lidars.msg
- )
+# add_message_files(
+#   FILES
+#   lidars.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -186,6 +186,8 @@ include_directories(
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
 # )
+
+
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
