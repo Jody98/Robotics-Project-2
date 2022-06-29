@@ -1,0 +1,18 @@
+<launch>
+	
+    <!--  **************** Sincronizzazione ****************  -->
+	<param name="/use_sim_time" value="true"/>
+
+	<!--  **************** Gmapping ****************  -->
+	<include file="$(find Project_2)/launch/map.launch.xml"/>
+
+	<!--  **************** Visualizzazione ****************  -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find Project_2)/rviz/Project_2.rviz"/>
+
+	<!--  **************** Odometria ****************  -->
+	<node pkg="Project_2" type="pub_odom" name="pub_odom"/>
+
+	<!-- ***************** Mappa più smooth ***************** -->
+	<node pkg="Project_2" type="occupancy_grid_processing.py" name="occupancy_grid_processing" output="log"/>
+
+</launch>

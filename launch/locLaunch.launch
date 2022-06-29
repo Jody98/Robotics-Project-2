@@ -1,0 +1,28 @@
+
+<launch>
+ 
+  <!-- Percorso del file yaml-->
+  <arg name="map_file"       default="$(find Project_2)/mappe/grid.yaml"/>
+
+  <!--  **************** Sincronizzazione ****************  -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!--  ****** Mappa *****  -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <param name="frame_id" value="map"/>
+  </node>
+
+  <!--  ****** amcl *****  -->
+  <include file="$(find Project_2)/launch/amcl.launch.xml"/>
+
+	<!--  **************** Visualizzazione ****************  -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find Project_2)/rviz/Project_2.rviz"/>
+  <node pkg="Project_2" type="disegna.py" name="disegna" />
+
+	<!--  **************** Odometria ****************  -->
+	<node pkg="Project_2" type="pub_odom" name="pub_odom"/>
+
+  <!--  **************** Salvataggio ****************  -->
+	<node pkg="Project_2" type="salvamappa.py" name="salvamappa" output="log"/>
+  
+</launch>
