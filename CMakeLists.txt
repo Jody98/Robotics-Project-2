@@ -17,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   tf2_ros
   tf2
-  )
+)
 
   
 ## System dependencies are found with CMake's conventions
@@ -59,11 +59,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+   FILES
+   Trajectory.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -108,7 +107,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(CATKIN_DEPENDS message_runtime)
+catkin_package(
+    CATKIN_DEPENDS message_runtime
+)
 
 ###########
 ## Build ##
@@ -135,7 +136,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/Project_2_node.cpp)
+#add_executable(${PROJECT_NAME}_node src/Project_2_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
