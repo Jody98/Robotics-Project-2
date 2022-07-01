@@ -19,7 +19,7 @@ class AmclPosesSaver:
         rospy.Subscriber("/amcl_pose", PoseWithCovarianceStamped, self.amcl_poe_reader_callback)
         self.poses = []
 
-        self.service = rospy.Service('save_trajectory', Trajectory, self.service_callback)
+        self.service = rospy.Service('salva', Trajectory, self.service_callback)
 
 
     def metadata_reader_callback(self, data):
