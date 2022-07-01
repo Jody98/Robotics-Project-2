@@ -1,4 +1,3 @@
-
 <launch>
  
   <!-- Percorso del file yaml-->
@@ -7,10 +6,8 @@
   <!--  **************** Sincronizzazione ****************  -->
   <param name="/use_sim_time" value="true"/>
 
-  <!--  ****** Mappa *****  -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
-    <param name="frame_id" value="map"/>
-  </node>
+  <!--  **************** Gmapping ****************  -->
+  <include file="$(find Project_2)/launch/map.launch.xml"/>
 
   <!--  ****** amcl *****  -->
   <include file="$(find Project_2)/launch/amcl.launch.xml"/>
