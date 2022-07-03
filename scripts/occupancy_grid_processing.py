@@ -6,8 +6,7 @@ from nav_msgs.msg import OccupancyGrid
 import os
 
 
-cwd = os.getcwd()
-pub = rospy.Publisher('my_map', OccupancyGrid, queue_size=1, latch=True)
+pub = rospy.Publisher('smooth_map', OccupancyGrid, queue_size=1, latch=True)
 
 
 def callback(data):
@@ -35,15 +34,16 @@ def callback(data):
     pub.publish(custom_map)
 
 
-
     image = cv2.rotate(image, cv2.ROTATE_180)
     image[image == -1] = 150
     image[image == 0] = 255
     image[image == 100] = 0
     
-    filename = cwd+'/grid.png'
-    print ("saving image")
+    script_directory_path = os.path.dirname(__file__)
+    dest_path_dir = os.path.join(script_directory_path, '../maps/')
+    filename = dest_path_dir+'/grid_mapping.png'
     cv2.imwrite (filename,image)
+
 
 
     

@@ -1,25 +1,32 @@
 <launch>
- 
-  <!-- Percorso del file yaml-->
-  <arg name="map_file"       default="$(find Project_2)/mappe/grid.yaml"/>
 
-  <!--  **************** Sincronizzazione ****************  -->
+  <!--  **************** Synchronization ****************  -->
   <param name="/use_sim_time" value="true"/>
 
-  <!--  **************** Gmapping ****************  -->
-  <include file="$(find Project_2)/launch/map.launch.xml"/>
+  <!-- ***************** YAML file path *****************-->
+  <arg name="map_file"       default="$(find Project_2)/maps/grid_mapping.yaml"/>
 
-  <!--  ****** amcl *****  -->
+  <!--  ****** AMCL *****  -->
   <include file="$(find Project_2)/launch/amcl.launch.xml"/>
 
-	<!--  **************** Visualizzazione ****************  -->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find Project_2)/rviz/Project_2.rviz"/>
-  <node pkg="Project_2" type="disegna.py" name="disegna" />
+	<!--  **************** Visualization ****************  -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find Project_2)/rviz/Project2.rviz"/>
 
-	<!--  **************** Odometria ****************  -->
+  <!--  **************** Drawing ****************  -->
+  <node pkg="Project_2" type="draw.py" name="draw" />
+
+	<!--  **************** Odometry ****************  -->
 	<node pkg="Project_2" type="pub_odom" name="pub_odom"/>
 
-  <!--  **************** Salvataggio ****************  -->
-	<node pkg="Project_2" type="salvamappa.py" name="salvamappa" output="log"/>
+  <!-- ***************** Smoother map ***************** -->
+  <node pkg="Project_2" type="occupancy_grid_processing.py" name="occupancy_grid_processing" output="log"/>
+  
+  <!--  **************** Saving ****************  -->
+	<node pkg="Project_2" type="save_map.py" name="save_map" output="log"/>
+
+  <!--  **************** Map Server ****************  -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+        <param name="frame_id" value="map"/>
+    </node>
   
 </launch>

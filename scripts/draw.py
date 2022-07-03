@@ -5,6 +5,7 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import PoseStamped
 
 path = Path()
+path_pub = rospy.Publisher('/path', Path, queue_size=100)
 
 def odom_cb(data):
     global path
@@ -15,10 +16,9 @@ def odom_cb(data):
     path.poses.append(pose)
     path_pub.publish(path)
 
-rospy.init_node('path_node')
 
-odom_sub = rospy.Subscriber('/odom', Odometry, odom_cb)
-path_pub = rospy.Publisher('/path', Path, queue_size=10)
 
 if __name__ == '__main__':
+    rospy.init_node('path_node')
+    rospy.Subscriber('/odom', Odometry, odom_cb)
     rospy.spin()

@@ -12,14 +12,14 @@ class AmclPosesSaver:
 
     def __init__(self):
 
-        rospy.init_node('salvamappa', anonymous=True)
+        rospy.init_node('save_map, anonymous=True')
 
         rospy.Subscriber("/map_metadata", MapMetaData, self.metadata_reader_callback)
         
         rospy.Subscriber("/amcl_pose", PoseWithCovarianceStamped, self.amcl_poe_reader_callback)
         self.poses = []
 
-        self.service = rospy.Service('salva', Trajectory, self.service_callback)
+        self.service = rospy.Service('save_map', Trajectory, self.service_callback)
 
 
     def metadata_reader_callback(self, data):
@@ -33,11 +33,11 @@ class AmclPosesSaver:
 
 
     def service_callback(self, req):
-        file_name = req.dest_file_name + ".jpg"
+        file_name = req.dest_file_name + ".pgm"
 
         script_directory_path = os.path.dirname(__file__)
         map_path = os.path.join(script_directory_path, '../scripts/grid.png')
-        dest_path_dir = os.path.join(script_directory_path, '../mappe/percorsi/')
+        dest_path_dir = os.path.join(script_directory_path, '../maps/')
         dest_path = os.path.join(dest_path_dir, file_name)
 
         img = cv.imread(map_path)

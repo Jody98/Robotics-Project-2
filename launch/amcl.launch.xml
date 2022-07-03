@@ -6,7 +6,7 @@
   <arg name="initial_pose_a"  default="0.0"/>
   <arg name="odom_frame_id"   default="odom"/>
   <arg name="base_frame_id"   default="base_link"/>
-  <arg name="global_frame_id" default="map"/>
+  <arg name="global_frame_id" default="smooth_map"/>
 
   <node pkg="amcl" type="amcl" name="amcl">
     <param name="use_map_topic"             value="$(arg use_map_topic)"/>
@@ -45,4 +45,12 @@
     <param name="initial_pose_a"            value="$(arg initial_pose_a)"/>
     <remap from="scan"                      to="$(arg scan_topic)"/>
   </node>
+
+
+
+  <node pkg="Project_2" type="pub_odom" name="odometry_transform" />
+  <node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster1" args="-0.35 0.0 0.0 0.0 0.0 0.866 0.5 base_link laser_rear 100" />
+  <node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster2" args="0.35 0.0 0.0 0.0 0.0 0.5150381 0.8571673 base_link laser_front 100" />
+  <node pkg="tf" type="static_transform_publisher" name="ira_static_broadcaster3" args="0.0 0.0 0.0 0.0 0.0 0.0 1.0 base_footprint base_link 100" />
+
 </launch>
