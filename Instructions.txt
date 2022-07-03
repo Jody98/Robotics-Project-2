@@ -147,5 +147,9 @@ Here we have the steps to perform localization:
 - To call the service for the map+path saving, open a new terminal and type 'rosservice call /save_map <name_you_chose_for_the_map>' 
 - The map will be saved in the 'maps' folder.
 
+### IMPORTANT ###
+
+We used Bag2 and Bag3 for the localization purpose, and we saved the paths of this two bags with a screenshot because we weren't able to make the service /save_map work. We put this paths in the subfolder 'paths' of the folder 'maps'.
+
 
 
